@@ -33,15 +33,21 @@ export const CalendarModal = () => {
     //const dispatch = useDispatch();
 
     const [formSumited, setFormSumited] = useState(false);
-    const { activeEvent } = useCalendarStore();
+    const { activeEvent, startSavingEvent } = useCalendarStore();
 
     const { isDateModalOpen, closeDateModal } = useUiStore();
 
     const [formValues, setFormValues] = useState({
-        title: 'Santiago',
-        notes: 'Marenco',
+        _id: new Date().getTime(),
+        title: 'Evento',
+        notes: ' notasss s s',
         start: new Date(),
-        end: addHours(new Date(), 2),
+        end: addHours( new Date(), 2),
+        bgColor: '#fafafa',
+        user: {
+          _id: '123',
+          name: 'Santiago'
+        }
     })
 
     const titleClass = useMemo(() => {
@@ -71,7 +77,7 @@ export const CalendarModal = () => {
         closeDateModal();
     }
 
-    const onSubmit = (e) => {
+    const onSubmit = async(e) => {
         e.preventDefault();
         setFormSumited(true);
 
@@ -85,6 +91,10 @@ export const CalendarModal = () => {
         if(formValues.title.length <= 0){
             return;
         }
+
+        await startSavingEvent( formValues );
+        closeDateModal();
+        setFormSumited(false);
 
     }
 
