@@ -8,7 +8,7 @@ import es from 'date-fns/locale/es';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css'
 import { useUiStore } from '../../hooks/useUiStore';
-import { useDispatch } from "react-redux"
+//import { useDispatch } from "react-redux"
 import { useCalendarStore } from '../../hooks/useCalendarStore';
 
 
@@ -38,14 +38,14 @@ export const CalendarModal = () => {
     const { isDateModalOpen, closeDateModal } = useUiStore();
 
     const [formValues, setFormValues] = useState({
-        _id: new Date().getTime(),
+        id: new Date().getTime(),
         title: 'Evento',
         notes: ' notasss s s',
         start: new Date(),
         end: addHours( new Date(), 2),
         bgColor: '#fafafa',
         user: {
-          _id: '123',
+          id: '123',
           name: 'Santiago'
         }
     })
